@@ -1,0 +1,15 @@
+.body1 {
+    background-image: url('../../images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.cardStyle {
+    width: 25rem;
+    margin-top: 60px;
+    margin-left: 35%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}

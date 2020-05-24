@@ -1,0 +1,54 @@
+@host = http://localhost:5000/api
+
+GET http://localhost:5000
+
+###
+GET {{host}}/users
+
+###
+# @name register
+POST {{host}}/users
+content-type: application/json
+
+{
+    "name": "LIC",
+    "email": "LIC@gmail.com",
+    "password": "123456"
+}
+
+###
+@registerToken = {{register.response.body.token}}
+@loginToken = {{login.response.body.token}}
+GET {{host}}/auth
+x-auth-token: {{loginToken}}
+
+###
+# @name login
+POST {{host}}/auth
+content-type: application/json
+
+{
+    "email": "praveen367vasa@gmail.com",
+    "password": "123456"
+}
+
+###
+GET {{host}}/profile/me
+x-auth-token: {{loginToken}}
+
+###
+GET {{host}}/profile
+###
+POST {{host}}/profile
+x-auth-token: {{loginToken}}
+content-type: application/json
+
+{
+    "accountNumber": 1234567891,
+    "balance": 2344,
+    "accountType": "savings"
+}
+
+###
+DELETE {{host}}/profile/5ec8b0ca78f2d648a47d8b70
+x-auth-token: {{loginToken}}
